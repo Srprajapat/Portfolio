@@ -573,7 +573,19 @@ h3.my-profession {
     width: 100%;
     display: block;
     height: 100%;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
 }
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.portfolio-item:hover{
+  transform: scale(1.1);
+}
+
 /* contact */
 .contact-title{
     color: var(--skin-color);
