@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-1.css') }}" class="alternate-style" title="color-1" disabled>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-2.css') }}" class="alternate-style" title="color-2" disabled>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-3.css') }}" class="alternate-style" title="color-3" disabled>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-4.css') }}" class="alternate-style" title="color-4" disabled>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/SKIN/color-5.css') }}" class="alternate-style" title="color-5" disabled>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style-switcher.css') }}">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- aside start -->
+        <div class="aside">
+            <div class="logo">
+                <a href="#"><span>S</span>r</a>
+            </div>
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+            <ul class="nav">
+                <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="#portfolio"><i class="fa fa-briefcase"></i>Portfolio</a></li>
+                <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
+            </ul>
+        </div>
+        <!-- aside end-->
+        <!-- main content start-->
+        <div class="main-content">
+            <!-- home section start -->
+            <section class="home section active" id="home">
+                <div class="container">
+                    <div class="row">
+                        <div class="home-info padd-15">
+                            <h2 class="hello">Hello, My name is <span class="name">Seetaram Prajapat</span></h2>
+                            <h3 class="my-profession">I'm a <span class="typing">Web Designer</span></h3>
+                            <p>I am web Designer with minimal experience.I have expertise in Python. Using Python for
+                                creating website designs, graphic designs and many more...</p>
+                            <a href="https://drive.google.com/file/d/1JsrhtvurjCAwwOHnxEnqCL5E1UobNE7s/view?usp=sharing" class="btn">Download Resume</a>
+                        </div>
+                        <div class="home-img padd-15">
+                            <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Srprajapat">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- home section end -->
+            <!-- about section start -->
+            <section class="about section " id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>About Me</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>I'm Seetaram Prajapat and <span>software Developer</span></h3>
+                                    <p>I’m a developer who loves building projects and solving problems
+                                        with <strong>Python</strong>. From data science experiments to web applications,
+                                        I enjoy exploring
+                                        how Python can be applied in different domains.</p>
+                                    <p>
+                                        Most of my projects are Python-based — ranging from automation scripts and web
+                                        apps
+                                        to machine learning and data analysis. I like writing clean, efficient code and
+                                        constantly improving my problem-solving skills.
+                                    </p>
+                                    <p>
+                                        My current focus is on strengthening my <strong>web development</strong> skills
+                                        while
+                                        continuing to grow as a Python developer. I’m excited to create impactful
+                                        projects
+                                        that combine my knowledge of Python with front-end technologies.
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday : <span> 18 march 2004 </span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Age : <span>21 </span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>https://portfolio-9e7i.onrender.com</span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Email : <span>seetaram.22jics083@jietjodhpur.ac.in</span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Degree : <span>Ongoing B-Tech </span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Phone : <span>9358870383 </span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>City : <span>Jodhpur</span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p>Freelance : <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="buttons padd-15">
+                                            <a href="#contact" class="btn hire-me">Hire Me</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>HTML</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width:95%"></div>
+                                                <div class="skill-percent">95%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>CSS</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width:70%"></div>
+                                                <div class="skill-percent">70%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>JS</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width:60%"></div>
+                                                <div class="skill-percent">60%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Python</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width:90%"></div>
+                                                <div class="skill-percent">90%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="education padd-15">
+                                    <h3 class="title">Education</h3>
+                                    <div class="row">
+                                        <div class="timeline-box padd-15">
+                                            <div class="timeline shadow-dark">
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date"><i class="fa fa-calendar"></i>JIET,
+                                                        2022-2026
+                                                    </h3>
+                                                    <h4 class="timeline-title">Bachelor of Technology (B.Tech) in
+                                                        Computer Science</h4>
+                                                    <p class="timeline-text"><em>Relevant Coursework:</em> Data
+                                                        Structures, Web Development, Machine Learning, Databases</p>
+                                                    <h3 class="timeline-title">Certifications</h3>
+                                                    <ul>
+                                                        <li class="timeline-text">Python (Basic) – HackerRank</li>
+                                                        <li class="timeline-text">Build with Django Web Development Fundamentals – CodeChef</li>
+                                                        <li class="timeline-text">Build with Flask Web Development Fundamentals - CodeChef</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date"><i class="fa fa-calendar"></i>Assent
+                                                        Academy, 2020-2022
+                                                    </h3>
+                                                    <h4 class="timeline-title">12th Standard</h4>
+                                                    <p class="timeline-text"><em>Relevant Coursework:</em> Physics,
+                                                        Chemistry, Mathematics, Computer Science</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- about section end -->
+            <!-- services section start -->
+            <section class="service section " id="services">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Services</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- services item start -->
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-mobile-alt"></i>
+                                </div>
+                                <h4>Web Design</h4>
+                                <p>I enjoy creating responsive and user-friendly websites using modern web technologies. I focus on writing clean and structured code, making sure that the design is both functional and visually appealing. My goal is to build web applications that provide a smooth and engaging user experience.</p>
+                            </div>
+                        </div>
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-laptop-code"></i>
+                                </div>
+                                <h4>Software Developer</h4>
+                                <p>I have a strong interest in software development and enjoy building applications that solve real-world problems. I work with Python and other programming languages to design, implement, and optimize solutions that are reliable, efficient, and easy to use.</p>
+                            </div>
+                        </div>
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-palette"></i>
+                                </div>
+                                <h4>UI/UX Design</h4>
+                                <p>I value the importance of good design and believe that a great product is both functional and intuitive. I explore UI/UX design principles to create simple, attractive, and user-friendly interfaces that enhance the overall experience for users.</p>
+                            </div>
+                        </div>
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-code"></i>
+                                </div>
+                                <h4>Problem solving</h4>
+                                <p>Problem-solving excites me because it challenges me to think critically and creatively. I like breaking down complex problems into smaller parts, analyzing them, and finding efficient solutions through logical reasoning and coding practices.</p>
+                            </div>
+                        </div>
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <h4>Research</h4>
+                                <p>I enjoy learning and exploring new ideas through research. Whether it’s testing new approaches in coding, experimenting with algorithms, or studying the latest technology trends, I like applying research-driven methods to improve my skills and projects.</p>
+                            </div>
+                        </div>
+                        <div class="services-item padd-15">
+                            <div class="services-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-bullhorn"></i>
+                                </div>
+                                <h4>Data Science</h4>
+                                <p>I am passionate about using data to uncover insights and make informed decisions. With Python, I explore data cleaning, analysis, and visualization, and I am learning machine learning techniques to build predictive models and work on data-driven projects.</p>
+                            </div>
+                        </div>
+                        <!-- services item end -->
+                    </div>
+                </div>
+            </section>
+            <!-- services section end -->
+            <!-- portfolio section start -->
+            <section class="portfolio section " id="portfolio">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Portfolio</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="portfolio-heading padd-15">
+                            <h2>My last Projects : </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://generatequiz.streamlit.app" target="_blank">
+                                        <img src="{{ url_for('static', filename='images/Screenshot 2025-09-19 221127.png') }}" alt="project1" height="300vh" class="center"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://micpbysr.onrender.com/" target="_blank"><img
+                                            src="{{ url_for('static', filename='images/Screenshot 2025-09-21 180110.png') }}" alt="project2" height="300vh" class="center"></a>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://srprajapat.github.io/love-hover-button/" target="_blank"><img
+                                            src="{{ url_for('static', filename='images/Screenshot 2025-09-21 192715.png') }}" alt="project3" height="300vh" class="center"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://word-count-h57m.onrender.com" target="_blank"><img
+                                            src="{{ url_for('static', filename='images/Screenshot 2025-09-21 215449.png') }}" alt="project3" height="300vh" class="center"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://image-classifier-3xo9.onrender.com" target="_blank"><img
+                                            src="{{ url_for('static', filename='images/Screenshot 2025-03-18 185807.png') }}" alt="project3" height="300vh" class="center"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-img">
+                                    <a href="https://portfolio-9e7i.onrender.com" target="_blank"><img
+                                            src="{{ url_for('static', filename='images/Screenshot 2025-09-21 223726.png') }}" alt="project3" height="300vh" class="center"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- portfolio section end -->
+            <!-- contact section start-->
+            <section class="contact section" id="contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Contact Me</h2>
+                        </div>
+                    </div>
+                    <h3 class="contact-title padd-15">Have you any questions ?</h3>
+                    <h4 class="contact-sub-title padd-15">I'm at your service.</h4>
+                    <div class="row">
+                        <div class="contact-info-item padd-15">
+                            <div class="icon">
+                                <i class="fa fa-phone"></i>
+                                <h4>Call Me on</h4>
+                                <p>+91 9358870383</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item padd-15">
+                            <div class="icon">
+                                <i class="fa fa-map-marker-alt"></i>
+                                <h4>House</h4>
+                                <p>Jodhpur</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item padd-15">
+                            <div class="icon">
+                                <i class="fa fa-envelope"></i>
+                                <h4>Email</h4>
+                                <p>seetaram.22jics083@jietjodhpur.ac.in</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item padd-15">
+                            <div class="icon">
+                                <i class="fa fa-globe-europe"></i>
+                                <h4>Website</h4>
+                                <p>https://portfolio-9e7i.onrender.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="contact-title padd-15">Send me an Email</h3>
+                    <h4 class="contact-sub-title padd-15">I'm very responsive to message.</h4>
+                    <div class="row">
+                        <div class="contact-form padd-15">
+                            <form id="contact-form">
+                                <div class="row">
+                                    <div class="form-item col-6 padd-15">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Name" name="name"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="form-item col-6 padd-15">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email" name="email"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-item col-12 padd-15">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Subject" name="subject"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-item col-12 padd-15">
+                                        <div class="form-group">
+                                            <textarea placeholder="Message" class="form-control"
+                                                name="message" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-item col-12 padd-15">
+                                        <button type="submit" class="btn">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="form-message" style="display: none; margin-top: 15px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- contact section end-->
+        </div>
+        <!-- main content end-->
+        <!-- style switcher start -->
+        <div class="style-switcher">
+            <div class="style-switcher-toggler s-icon">
+                <i class="fas fa-cog fa-spin"></i>
+            </div>
+            <div class="day-night s-icon" id="day-night">
+                <i class="fas "></i>
+            </div>
+            <h4>Theme colors</h4>
+            <div class="colors">
+                <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+                <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+                <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+                <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+                <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+            </div>
+        </div>
+        <!-- style switcher end -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"
+        referrerpolicy="no-referrer"></script>
+    <script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/style-switcher.js') }}"></script>
+</body>
+
+</html>
