@@ -15,6 +15,7 @@ A modern, responsive personal portfolio website built with HTML5, CSS3, and Java
 - **Typing Animation**: Dynamic text animation on the home section
 - **Hover Effects**: Interactive elements throughout the site
 - **Mobile Navigation**: Collapsible sidebar for mobile devices
+- **Swipe Navigation**: Touch gestures for opening/closing navigation on mobile
 - **Portfolio Gallery**: Showcase of projects with live links
 
 ### Technical Features
@@ -22,6 +23,8 @@ A modern, responsive personal portfolio website built with HTML5, CSS3, and Java
 - **SEO Friendly**: Semantic HTML structure
 - **Performance Optimized**: Lightweight and fast loading
 - **Cross-browser Compatible**: Works across modern browsers
+- **Touch Gestures**: Swipe navigation for mobile devices
+- **Responsive Touch Events**: Optimized for touch interactions
 
 ## 🚀 Live Demo
 
@@ -66,6 +69,21 @@ Portfolio/
 - **Desktop**: > 1050px
 - **Tablet**: 692px - 1050px
 - **Mobile**: < 692px
+
+## 👆 Mobile Gestures
+
+### Swipe Navigation
+The portfolio includes intuitive touch gestures for mobile navigation:
+
+- **Open Navigation**: Swipe right from the left edge of the screen
+- **Close Navigation**: Swipe left from the right edge of the screen
+- **Visual Hint**: A temporary hint appears at the bottom right corner for 10-15 seconds after page load, guiding users to discover the swipe functionality
+- **Smart Detection**: Context-aware gestures that work based on navigation state
+
+### Touch Optimization
+- **Passive Touch Events**: Optimized for smooth scrolling and gestures
+- **Edge Detection**: Precise edge detection for swipe gestures
+- **Gesture Prevention**: Prevents unwanted scrolling during navigation swipes
 
 ## 🎨 Customization
 
