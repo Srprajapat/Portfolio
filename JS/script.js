@@ -5,7 +5,6 @@ var typed = new Typed(".typing",{
     BackSpeed:60,
     loop:true
 })
-/* aside */
 const nav = document.querySelector('.nav'),
     navlist = nav.querySelectorAll('li'),
     totalnavlist = navlist.length,
@@ -72,6 +71,21 @@ const nav = document.querySelector('.nav'),
             }
         }
 
+/* swipe navigation hint */
+document.addEventListener('DOMContentLoaded', function() {
+    const swipeHint = document.getElementById('swipeHint');
+
+    // Show hint after a brief delay
+    setTimeout(function() {
+        swipeHint.classList.add('show');
+    }, 1000);
+
+    // Hide hint after 12 seconds (middle of 10-15 second range)
+    setTimeout(function() {
+        swipeHint.classList.remove('show');
+    }, 15000); // 15 seconds total (1s delay + 14s visible)
+});
+
 /* swipe navigation for sidebar toggle */
 let touchStartX = 0;
 let touchStartY = 0;
@@ -79,30 +93,15 @@ let isSwipeGesture = false;
 const minSwipeDistance = 60; // Minimum distance for a valid swipe (reduced)
 const maxVerticalMovement = 80; // Maximum vertical movement allowed (increased)
 
-// Get main content element for swipe hints
-const mainContent = document.querySelector('.main-content');
-
 // Add touch event listeners for sidebar toggle on main content
-mainContent.addEventListener('touchstart', handleTouchStart, { passive: false });
-mainContent.addEventListener('touchmove', handleTouchMove, { passive: false });
-mainContent.addEventListener('touchend', handleTouchEnd, { passive: false });
+document.addEventListener('touchstart', handleTouchStart, { passive: false });
+document.addEventListener('touchmove', handleTouchMove, { passive: false });
+document.addEventListener('touchend', handleTouchEnd, { passive: false });
 
 function handleTouchStart(e) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     isSwipeGesture = false;
-
-    const aside = document.querySelector('.aside');
-    const isNavOpen = aside.classList.contains('open');
-
-    // Show swipe hint based on navigation state
-    if (!isNavOpen && touchStartX < 80) {
-        // Navigation closed: show hint for left edge swipe to open
-        mainContent.classList.add('swipe-hint');
-    } else if (isNavOpen && touchStartX > window.innerWidth - 80) {
-        // Navigation open: show hint for right edge swipe to close
-        mainContent.classList.add('swipe-hint');
-    }
 }
 
 function handleTouchMove(e) {
@@ -131,9 +130,6 @@ function handleTouchMove(e) {
 }
 
 function handleTouchEnd(e) {
-    // Hide swipe hint
-    mainContent.classList.remove('swipe-hint');
-
     if (!touchStartX) return;
 
     const touchEndX = e.changedTouches[0].clientX;

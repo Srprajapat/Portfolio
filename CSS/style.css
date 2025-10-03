@@ -745,49 +745,62 @@ h3.my-profession {
         transition: opacity 0.3s ease;
     }
 
-    .main-content.swipe-hint::before {
-        opacity: 1;
-    }
 
-    /* Subtle swipe indicator */
-    .main-content::after {
-        content: "‹‹‹";
-        position: fixed;
-        left: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--skin-color);
-        font-size: 12px;
-        font-weight: bold;
-        z-index: 1000;
-        pointer-events: none;
+}
+
+/* Swipe navigation hint */
+.swipe-navigation-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--skin-color);
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    pointer-events: none;
+    animation: fadeInOut 12s ease-in-out 1s forwards;
+}
+
+.swipe-navigation-hint.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInOut {
+    0% {
         opacity: 0;
-        transition: opacity 0.3s ease;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
+        transform: translateY(20px);
     }
-
-    .main-content.swipe-hint::after {
-        opacity: 0.6;
+    8% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    83% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 }
 
-/* Ensure touch events work properly on mobile */
-@media (max-width: 1050px) {
-    .main-content {
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-    }
-
-    /* Allow normal scrolling within sections */
-    .section {
-        touch-action: pan-y;
-        overflow-y: auto;
-        min-height: 100vh;
-    }
-
-    .section.active {
-        overflow-y: auto;
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .swipe-navigation-hint {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 13px;
     }
 }
 @media(max-width:1050px){
