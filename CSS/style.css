@@ -269,6 +269,9 @@ ul{
 .home .home-info{
     flex: 0 0 60%;
     max-width: 60%;
+    position: relative;
+    z-index: 2;
+    padding: 0 50px;
 }
 h2.hello{
     font-size: 28px;
@@ -318,10 +321,70 @@ h3.my-profession {
     right: 20px;
     bottom: -40px;
 }
+.home .home-img{
+    flex: 0 0 40%;
+    max-width: 40%;
+    position:relative;
+    text-align: center;
+}
+.home-img::before{
+    content: " ";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-top: 10px solid var(--skin-color);
+    border-left: 10px solid var(--skin-color);
+    left: 20px;
+    top: -40px;
+}
+.home-img::after{
+    content: " ";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-bottom: 10px solid var(--skin-color);
+    border-right: 10px solid var(--skin-color);
+    right: 20px;
+    bottom: -40px;
+}
+.home .home-img{
+    flex: 0 0 40%;
+    max-width: 40%;
+    position:relative;
+    text-align: center;
+    z-index: 2;
+}
+.home-img::before{
+    content: " ";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-top: 10px solid var(--skin-color);
+    border-left: 10px solid var(--skin-color);
+    left: 20px;
+    top: -40px;
+    z-index: 3;
+}
+.home-img::after{
+    content: " ";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-bottom: 10px solid var(--skin-color);
+    border-right: 10px solid var(--skin-color);
+    right: 20px;
+    bottom: -40px;
+    z-index: 3;
+}
 .home .home-img img{
     margin: auto;
-    border-radius: 5px;
+    border-radius: 15px;
     height: 400px;
+    position: relative;
+    z-index: 2;
+}
+.home .home-img img:hover{
+    transform: scale(1.05);
 }
 /* about */
 .about .about-content {
@@ -661,9 +724,99 @@ h3.my-profession {
     height: 50px;
     padding: 0 15px;
 }
+/* swipe navigation styles */
+.main-content {
+    cursor: default;
+}
+
+/* Swipe hint for mobile navigation */
+@media (max-width: 1050px) {
+    .main-content::before {
+        content: "";
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 100vh;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+        z-index: 999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .main-content.swipe-hint::before {
+        opacity: 1;
+    }
+
+    /* Subtle swipe indicator */
+    .main-content::after {
+        content: "‹‹‹";
+        position: fixed;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--skin-color);
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+
+    .main-content.swipe-hint::after {
+        opacity: 0.6;
+    }
+}
+
+/* Ensure touch events work properly on mobile */
+@media (max-width: 1050px) {
+    .main-content {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    /* Allow normal scrolling within sections */
+    .section {
+        touch-action: pan-y;
+        overflow-y: auto;
+        min-height: 100vh;
+    }
+
+    .section.active {
+        overflow-y: auto;
+    }
+}
 @media(max-width:1050px){
+    .home{
+        flex-direction: column; /* Stack image and text vertically on mobile */
+        padding: 20px; /* Add some padding for mobile */
+    }
     .home .home-img{
-        display: none;
+        display: block; /* Show image on mobile */
+        order: 1; /* Image appears first */
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    .home .home-img::before,
+    .home .home-img::after{
+        display: none; /* Hide decorative elements on mobile */
+    }
+    .home .home-info{
+        order: 2; /* Text appears after image */
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+        padding: 0 20px;
+    }
+    .home .home-img img{
+        height: 300px; /* Smaller image for mobile */
+        width: auto;
+        max-width: 100%;
     }
     .aside{
         left: -270px;
@@ -698,8 +851,32 @@ h3.my-profession {
     }
 }
 @media (max-width:692px){
+    .home{
+        flex-direction: column; /* Stack image and text vertically on mobile */
+        padding: 15px; /* Add some padding for mobile */
+    }
     .home .home-img{
-        display :none;
+        display: block; /* Show image on mobile */
+        order: 1; /* Image appears first */
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    .home .home-img::before,
+    .home .home-img::after{
+        display: none; /* Hide decorative elements on mobile */
+    }
+    .home .home-info{
+        order: 2; /* Text appears after image */
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+        padding: 0 15px;
+    }
+    .home .home-img img{
+        height: 250px; /* Even smaller image for very small screens */
+        width: auto;
+        max-width: 100%;
     }
     .about .about-content .personal-info,
     .about .about-content .skills,

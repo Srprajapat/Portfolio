@@ -71,3 +71,127 @@ const nav = document.querySelector('.nav'),
                 allsection[i].classList.toggle('open');
             }
         }
+
+/* swipe navigation for sidebar toggle */
+let touchStartX = 0;
+let touchStartY = 0;
+let isSwipeGesture = false;
+const minSwipeDistance = 60; // Minimum distance for a valid swipe (reduced)
+const maxVerticalMovement = 80; // Maximum vertical movement allowed (increased)
+
+// Get main content element for swipe hints
+const mainContent = document.querySelector('.main-content');
+
+// Add touch event listeners for sidebar toggle on main content
+mainContent.addEventListener('touchstart', handleTouchStart, { passive: false });
+mainContent.addEventListener('touchmove', handleTouchMove, { passive: false });
+mainContent.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwipeGesture = false;
+
+    const aside = document.querySelector('.aside');
+    const isNavOpen = aside.classList.contains('open');
+
+    // Show swipe hint based on navigation state
+    if (!isNavOpen && touchStartX < 80) {
+        // Navigation closed: show hint for left edge swipe to open
+        mainContent.classList.add('swipe-hint');
+    } else if (isNavOpen && touchStartX > window.innerWidth - 80) {
+        // Navigation open: show hint for right edge swipe to close
+        mainContent.classList.add('swipe-hint');
+    }
+}
+
+function handleTouchMove(e) {
+    if (!touchStartX || !touchStartY) return;
+
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = currentX - touchStartX;
+    const deltaY = Math.abs(currentY - touchStartY);
+
+    const aside = document.querySelector('.aside');
+    const isNavOpen = aside.classList.contains('open');
+
+    // Check if this is a horizontal swipe and not too vertical
+    if (deltaY < maxVerticalMovement) {
+        if (!isNavOpen && deltaX > 20 && touchStartX < 80) {
+            // Navigation closed: left-to-right swipe from left edge
+            e.preventDefault();
+            isSwipeGesture = true;
+        } else if (isNavOpen && deltaX < -20 && touchStartX > window.innerWidth - 80) {
+            // Navigation open: right-to-left swipe from right edge
+            e.preventDefault();
+            isSwipeGesture = true;
+        }
+    }
+}
+
+function handleTouchEnd(e) {
+    // Hide swipe hint
+    mainContent.classList.remove('swipe-hint');
+
+    if (!touchStartX) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = Math.abs(touchEndY - touchStartY);
+
+    const aside = document.querySelector('.aside');
+    const isNavOpen = aside.classList.contains('open');
+
+    // Check swipe direction based on navigation state
+    let isValidSwipe = false;
+
+    if (!isNavOpen) {
+        // Navigation closed: left-to-right swipe from left edge to open
+        isValidSwipe = (deltaX > minSwipeDistance && deltaY < maxVerticalMovement && touchStartX < 80);
+    } else {
+        // Navigation open: right-to-left swipe from right edge to close
+        isValidSwipe = (deltaX < -minSwipeDistance && deltaY < maxVerticalMovement && touchStartX > window.innerWidth - 80);
+    }
+
+    if (isValidSwipe) {
+        // Toggle the navigation sidebar
+        toggleNavigation();
+    }
+
+    // Reset
+    touchStartX = 0;
+    touchStartY = 0;
+    isSwipeGesture = false;
+}
+
+function toggleNavigation() {
+    const aside = document.querySelector('.aside');
+    const navToggler = document.querySelector('.nav-toggler');
+
+    // Check if navigation is currently open
+    const isOpen = aside.classList.contains('open');
+
+    if (!isOpen) {
+        // Open navigation
+        aside.classList.add('open');
+        navToggler.classList.add('open');
+
+        // Close navigation sections
+        const allSections = document.querySelectorAll('.section');
+        allSections.forEach(section => {
+            section.classList.add('open');
+        });
+    } else {
+        // Close navigation
+        aside.classList.remove('open');
+        navToggler.classList.remove('open');
+
+        // Open navigation sections
+        const allSections = document.querySelectorAll('.section');
+        allSections.forEach(section => {
+            section.classList.remove('open');
+        });
+    }
+}
