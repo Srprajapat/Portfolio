@@ -378,7 +378,12 @@
                     <h4 class="contact-sub-title padd-15">I'm very responsive to message.</h4>
                     <div class="row">
                         <div class="contact-form padd-15">
-                            <form action="contact.php" method="post">
+                            <form action="https://api.web3forms.com/submit" method="POST">
+                                <!-- Replace YOUR_ACCESS_KEY_HERE with your actual Web3Forms access key -->
+                                <input type="hidden" name="access_key" value="d1ce1bc2-52b0-4b2f-afdf-95f493b33690">
+                                <!-- Optional: Customize the subject line -->
+                                <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                                
                                 <div class="row">
                                     <div class="form-item col-6 padd-15">
                                         <div class="form-group">
@@ -404,11 +409,14 @@
                                 <div class="row">
                                     <div class="form-item col-12 padd-15">
                                         <div class="form-group">
-                                            <textarea name="" id="" placeholder="Message" class="form-control"
+                                            <textarea placeholder="Message" class="form-control"
                                                 name="message" required></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Honeypot field to prevent spam -->
+                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                                
                                 <div class="row">
                                     <div class="form-item col-12 padd-15">
                                         <button type="submit" class="btn">Send Message</button>
