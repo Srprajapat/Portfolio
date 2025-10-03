@@ -1,6 +1,6 @@
 /* typing animation */
 var typed = new Typed(".typing",{
-    strings :['','Web Developer','Web Designer','UI/UX Design','Problem Solver','Software Engineer','Data Engineer'],
+    strings :['','Web Developer','Web Designer','UI/UX Design','Problem Solver','Software Engineer','Data Engineer','Data Scientist','Machine Learning Engineer','Software Developer'],
     typeSpeed:100,
     BackSpeed:60,
     loop:true
@@ -72,44 +72,3 @@ const nav = document.querySelector('.nav'),
             }
         }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(contactForm);
-
-            fetch('/contact', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                formMessage.style.display = 'block';
-                if (data.success) {
-                    formMessage.textContent = data.message;
-                    formMessage.style.color = 'green';
-                    contactForm.reset();
-                } else {
-                    formMessage.textContent = data.message;
-                    formMessage.style.color = 'red';
-                }
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            })
-            .catch(error => {
-                formMessage.style.display = 'block';
-                formMessage.textContent = 'An error occurred while sending the message.';
-                formMessage.style.color = 'red';
-                console.error('Error:', error);
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            });
-        });
-    }
-});
