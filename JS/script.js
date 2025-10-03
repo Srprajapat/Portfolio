@@ -1,6 +1,6 @@
 /* typing animation */
 var typed = new Typed(".typing",{
-    strings :['','Web Developer','Web Designer','UI/UX Design','Problem Solver','Software Engineer','Data Engineer','Data Scientist','Machine Learning Engineer','Software Developer'],
+    strings :['','Web Developer','Web Designer','UI/UX Design','Problem Solver','Software Engineer','Data Engineer'],
     typeSpeed:100,
     BackSpeed:60,
     loop:true
@@ -71,4 +71,3 @@ const nav = document.querySelector('.nav'),
                 allsection[i].classList.toggle('open');
             }
         }
-
