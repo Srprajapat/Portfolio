@@ -803,6 +803,13 @@ h3.my-profession {
         font-size: 13px;
     }
 }
+
+/* Hide swipe hint on desktop */
+@media (min-width: 1050px) {
+    .swipe-navigation-hint {
+        display: none !important;
+    }
+}
 @media(max-width:1050px){
     .home{
         flex-direction: column; /* Stack image and text vertically on mobile */
