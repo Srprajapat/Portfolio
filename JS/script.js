@@ -5,6 +5,78 @@ var typed = new Typed(".typing",{
     BackSpeed:60,
     loop:true
 })
+
+/* swipe navigation hint and contact form handling */
+document.addEventListener('DOMContentLoaded', function() {
+    const swipeHint = document.getElementById('swipeHint');
+
+    // Show hint after a brief delay
+    setTimeout(function() {
+        if (swipeHint) swipeHint.classList.add('show');
+    }, 1000);
+
+    // Hide hint after 12 seconds (middle of 10-15 second range)
+    setTimeout(function() {
+        if (swipeHint) swipeHint.classList.remove('show');
+    }, 13000); // 13 seconds total (1s delay + 12s visible)
+
+    // Contact form handling
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    if (contactForm && successMessage) {
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Disable submit button and show loading state
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+            }
+
+            // Prepare form data
+            const formData = new FormData(contactForm);
+
+            // Submit form using fetch
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success - show success message
+                    successMessage.style.display = 'block';
+                    contactForm.reset(); // Clear the form
+
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error sending your message. Please try again or contact me directly.');
+            })
+            .finally(() => {
+                // Re-enable submit button
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
+            });
+        });
+    }
+});
+
+/* aside */
 const nav = document.querySelector('.nav'),
     navlist = nav.querySelectorAll('li'),
     totalnavlist = navlist.length,
@@ -71,22 +143,7 @@ const nav = document.querySelector('.nav'),
             }
         }
 
-/* swipe navigation hint */
-document.addEventListener('DOMContentLoaded', function() {
-    const swipeHint = document.getElementById('swipeHint');
 
-    // Show hint after a brief delay
-    setTimeout(function() {
-        swipeHint.classList.add('show');
-    }, 1000);
-
-    // Hide hint after 12 seconds (middle of 10-15 second range)
-    setTimeout(function() {
-        swipeHint.classList.remove('show');
-    }, 15000); // 15 seconds total (1s delay + 14s visible)
-});
-
-/* swipe navigation for sidebar toggle */
 let touchStartX = 0;
 let touchStartY = 0;
 let isSwipeGesture = false;
@@ -94,9 +151,10 @@ const minSwipeDistance = 60; // Minimum distance for a valid swipe (reduced)
 const maxVerticalMovement = 80; // Maximum vertical movement allowed (increased)
 
 // Add touch event listeners for sidebar toggle on main content
-document.addEventListener('touchstart', handleTouchStart, { passive: false });
-document.addEventListener('touchmove', handleTouchMove, { passive: false });
-document.addEventListener('touchend', handleTouchEnd, { passive: false });
+const mainContent = document.querySelector('.main-content');
+mainContent.addEventListener('touchstart', handleTouchStart, { passive: false });
+mainContent.addEventListener('touchmove', handleTouchMove, { passive: false });
+mainContent.addEventListener('touchend', handleTouchEnd, { passive: false });
 
 function handleTouchStart(e) {
     touchStartX = e.touches[0].clientX;
@@ -117,11 +175,11 @@ function handleTouchMove(e) {
 
     // Check if this is a horizontal swipe and not too vertical
     if (deltaY < maxVerticalMovement) {
-        if (!isNavOpen && deltaX > 20 && touchStartX < 80) {
+        if (!isNavOpen && deltaX > 20 && touchStartX < 100) {
             // Navigation closed: left-to-right swipe from left edge
             e.preventDefault();
             isSwipeGesture = true;
-        } else if (isNavOpen && deltaX < -20 && touchStartX > window.innerWidth - 80) {
+        } else if (isNavOpen && deltaX < -20 && touchStartX > window.innerWidth - 100) {
             // Navigation open: right-to-left swipe from right edge
             e.preventDefault();
             isSwipeGesture = true;
@@ -145,10 +203,10 @@ function handleTouchEnd(e) {
 
     if (!isNavOpen) {
         // Navigation closed: left-to-right swipe from left edge to open
-        isValidSwipe = (deltaX > minSwipeDistance && deltaY < maxVerticalMovement && touchStartX < 80);
+        isValidSwipe = (deltaX > minSwipeDistance && deltaY < maxVerticalMovement && touchStartX < 100);
     } else {
         // Navigation open: right-to-left swipe from right edge to close
-        isValidSwipe = (deltaX < -minSwipeDistance && deltaY < maxVerticalMovement && touchStartX > window.innerWidth - 80);
+        isValidSwipe = (deltaX < -minSwipeDistance && deltaY < maxVerticalMovement && touchStartX > window.innerWidth - 100);
     }
 
     if (isValidSwipe) {

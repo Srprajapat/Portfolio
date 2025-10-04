@@ -23,19 +23,55 @@ function setActiveStyle(color){
     })
 }
 
-/* theme dark and light mode */
+/* theme dark and light mode - automatic system preference with manual override */
 const daynight = document.querySelector("#day-night");
-daynight.addEventListener("click", () => {
-    daynight.querySelector("i").classList.toggle("fa-sun");
-    daynight.querySelector("i").classList.toggle("fa-moon");
-    document.body.classList.toggle("dark");
-})
 
+// Function to apply theme
+function applyTheme(isDark) {
+    const icon = daynight.querySelector("i");
+
+    if (isDark) {
+        document.body.classList.add("dark");
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+    } else {
+        document.body.classList.remove("dark");
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+    }
+
+    // Store manual preference
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Function to get current theme state
+function getCurrentTheme() {
+    // Check if user has manually set a preference
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+        return storedTheme === 'dark';
+    }
+
+    // Otherwise use system preference
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+// Initialize theme on load
 window.addEventListener("load", () => {
-    if (document.body.classList.contains("dark")) {
-        daynight.querySelector("i").classList.add("fa-sun");
+    const isDark = getCurrentTheme();
+    applyTheme(isDark);
+});
+
+// Manual theme toggle
+daynight.addEventListener("click", () => {
+    const isCurrentlyDark = document.body.classList.contains("dark");
+    applyTheme(!isCurrentlyDark);
+});
+
+// Listen for system theme changes (only if no manual preference is set)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // Only auto-switch if user hasn't manually set a preference
+    if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches);
     }
-    else {
-        daynight.querySelector("i").classList.add("fa-moon");
-    }
-})
+});

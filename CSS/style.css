@@ -6,12 +6,34 @@
     --text-black-900:#302e4d;
     --text-black-700:#504e70;
 }
-body.dark{
+
+/* Dark theme for users who prefer dark color scheme or manually toggle to dark */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-black-900: #151515;
+        --bg-black-100: #222222;
+        --bg-black-50: #393939;
+        --text-black-900:#ffffff;
+        --text-black-700:#e9e9e9;
+    }
+}
+
+/* Manual dark theme override */
+body.dark {
     --bg-black-900: #151515;
     --bg-black-100: #222222;
     --bg-black-50: #393939;
     --text-black-900:#ffffff;
     --text-black-700:#e9e9e9;
+}
+
+/* Manual light theme override - ensures light mode works even on dark system preference */
+body:not(.dark) {
+    --bg-black-900: #f2f2fc;
+    --bg-black-100: #fdf9ff;
+    --bg-black-50: #e8dfec;
+    --text-black-900:#302e4d;
+    --text-black-700:#504e70;
 }
 body{
     line-height: 1.5;
@@ -632,21 +654,90 @@ h3.my-profession {
     border-radius: 10px;
     overflow: hidden;
 }
-.portfolio .portfolio-item-inner .portfolio.img img{
+.portfolio .portfolio-item-inner .portfolio-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.portfolio .portfolio-item-inner .portfolio-img img {
     width: 100%;
-    display: block;
-    height: 100%;
+    height: 300px;
+    object-fit: cover;
     transition: transform 0.3s ease;
-    border-radius: 5px;
 }
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+
+.portfolio .portfolio-item-inner .portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(28, 113, 30, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
 }
-.portfolio-item:hover{
-  transform: scale(1.1);
+
+.portfolio .portfolio-item-inner:hover .portfolio-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio .portfolio-item-inner:hover .portfolio-img img {
+    transform: scale(1.05);
+}
+
+.portfolio-overlay-content {
+    text-align: center;
+    color: white;
+    max-width: 100%;
+}
+
+.portfolio-overlay-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portfolio-overlay-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.tech-stack {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile adjustments for portfolio overlay */
+@media (max-width: 768px) {
+    .portfolio-overlay-content h3 {
+        font-size: 16px;
+    }
+    
+    .portfolio-overlay-content p {
+        font-size: 13px;
+    }
+    
+    .tech-stack {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
 }
 
 /* contact */
@@ -808,6 +899,42 @@ h3.my-profession {
 @media (min-width: 1050px) {
     .swipe-navigation-hint {
         display: none !important;
+    }
+}
+
+/* Contact form success message */
+.success-message {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    animation: successSlideIn 0.5s ease-out;
+}
+
+.success-message i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.success-message p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@keyframes successSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 @media(max-width:1050px){
