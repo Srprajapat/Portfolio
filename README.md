@@ -180,7 +180,7 @@ The portfolio showcases the following projects:
 
 ## 📞 Contact
 
-- **Email**: seetaram.22jics083@jietjodhpur.ac.in
+- **Email**: seetaram7300@gmail.com
 - **Phone**: +91 9358870383
 - **Location**: Jodhpur, India
 - **Website**: [https://srprajapat.onrender.com/](https://srprajapat.onrender.com/)
